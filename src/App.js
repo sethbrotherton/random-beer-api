@@ -1,26 +1,67 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
+import BeerPage from "./BeerPage";
+import BeerDetails from "./BeerDetails";
+import FavoriteBeersPage from "./FavoriteBeersPage";
 
-class App extends Component {
+class App extends React.Component {
+  state = {
+    activeTab: 0,
+    beers: [],
+    favorites: [{ name: "tasty", tagline: "drink me" }]
+  };
+
+  handleTabChange = index => {
+    this.setState({
+      activeTab: index
+    });
+    console.log(this.state.activeTab);
+  };
+
+  addToFavorites = i => {
+    this.setState(state => {
+      const favorited = this.state.beers.map((beer, j) => {
+        if (j === i) {
+          return beer;
+        } else {
+          return null;
+        }
+      });
+      console.log(favorited);
+      return {
+        favorites: [{ ...favorited }, ...this.state.favorites]
+      };
+    });
+  };
+
+  renderContent(i) {
+    switch (this.state.activeTab) {
+      default:
+      case 0:
+        return (
+          <BeerPage
+            beers={this.state.beers}
+            onAddToFavorites={() => this.addToFavorites(i)}
+          />
+        );
+      case 1:
+        return <FavoriteBeersPage favoriteBeers={this.state.favorites} />;
+    }
+  }
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <Router>
+        <div className="App">
+          <Link to="/">
+            <h1>Random Beer API</h1>
+          </Link>
+          <Switch>
+            <Route exact path="/" component={BeerPage} />
+            <Route path="/:id" component={BeerDetails} />
+          </Switch>
+        </div>
+      </Router>
     );
   }
 }
