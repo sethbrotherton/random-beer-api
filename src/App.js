@@ -2,7 +2,6 @@ import React from "react";
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import BeerPage from "./BeerPage";
 import BeerDetails from "./BeerDetails";
-import FavoriteBeersPage from "./FavoriteBeersPage";
 
 class App extends React.Component {
   state = {
@@ -34,20 +33,20 @@ class App extends React.Component {
     });
   };
 
-  renderContent(i) {
-    switch (this.state.activeTab) {
-      default:
-      case 0:
-        return (
-          <BeerPage
-            beers={this.state.beers}
-            onAddToFavorites={() => this.addToFavorites(i)}
-          />
-        );
-      case 1:
-        return <FavoriteBeersPage favoriteBeers={this.state.favorites} />;
-    }
-  }
+  // renderContent(i) {
+  //   switch (this.state.activeTab) {
+  //     default:
+  //     case 0:
+  //       return (
+  //         <BeerPage
+  //           beers={this.state.beers}
+  //           onAddToFavorites={() => this.addToFavorites(i)}
+  //         />
+  //       );
+  //     case 1:
+  //       return <FavoriteBeersPage favoriteBeers={this.state.favorites} />;
+  //   }
+  // }
 
   render() {
     return (

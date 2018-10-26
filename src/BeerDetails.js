@@ -1,5 +1,4 @@
 import React from "react";
-import BeerPage from "./BeerPage";
 
 class BeerDetails extends React.Component {
   state = {
