@@ -1,3 +1,5 @@
+This Random Beer in React.js API reaches out to a beer api via async/await and fetch.  A new random beer is generated via button click.  Routing is incorporated so that any beer may be selected to display more information and the page header always leads back to the home page.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
