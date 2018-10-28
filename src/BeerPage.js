@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import "./BeerPage.css";
 
 class BeerPage extends React.Component {
   state = {
@@ -29,22 +30,26 @@ class BeerPage extends React.Component {
   render() {
     return (
       <div>
-        <button onClick={() => this.fetchBeer()}>BEER ME!</button>
-        {this.state.beers.map(beer => {
-          return (
-            <Link to={`/${beer.id}`} key={beer.id}>
-              <div className="beer-card">
-                <h2>{beer.name}</h2>
-                <h4 className="beer-tagline">{beer.tagline}</h4>
-                <p>ABV - {beer.abv}%</p>
-                <div>
-                  <img src={beer.image_url} className="beer-pic" />
-                  <p className="beer-description">{beer.description}</p>
+        <button className="beer-me-button" onClick={() => this.fetchBeer()}>
+          BEER ME!
+        </button>
+        <div className="beers-container">
+          {this.state.beers.map(beer => {
+            return (
+              <Link to={`/${beer.id}`} key={beer.id}>
+                <div className="beer-card">
+                  <h2 className="beer-name">{beer.name}</h2>
+                  <h4 className="beer-tagline">{beer.tagline}</h4>
+                  <p className="beer-abv">ABV - {beer.abv}%</p>
+                  <div>
+                    <img src={beer.image_url} className="beer-pic" alt="beer" />
+                    <p className="beer-description">{beer.description}</p>
+                  </div>
                 </div>
-              </div>
-            </Link>
-          );
-        })}
+              </Link>
+            );
+          })}
+        </div>
       </div>
     );
   }

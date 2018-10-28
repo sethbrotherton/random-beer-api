@@ -1,4 +1,5 @@
 import React from "react";
+import "./BeerDetails.css";
 
 class BeerDetails extends React.Component {
   state = {
@@ -25,17 +26,34 @@ class BeerDetails extends React.Component {
       <div>
         {this.state.beer.map(detail => {
           return (
-            <div>
+            <div key={detail.id} className="beer-details-card">
+              <img
+                className="beer-details-pic"
+                src={detail.image_url}
+                alt="beer"
+              />
               <h1>{detail.name}</h1>
               <h2>{detail.tagline}</h2>
               <h3>ABV - {detail.abv}%</h3>
-              <img src={detail.image_url} alt="beer" />
+              <h3>{detail.ibu} IBU</h3>
+
               <p>{detail.description}</p>
+              <h3>Food Pairings</h3>
               <ul>
-                <h3>Food Pairings</h3>
                 <li>{detail.food_pairing[0]}</li>
                 <li>{detail.food_pairing[1]}</li>
                 <li>{detail.food_pairing[2]}</li>
+              </ul>
+
+              <h3>Hops brewed with:</h3>
+              <ul>
+                {detail.ingredients.hops.map(hop => {
+                  return (
+                    <div key={hop.name}>
+                      <li>{hop.name}</li>
+                    </div>
+                  );
+                })}
               </ul>
             </div>
           );

@@ -1,0 +1,66 @@
+body {
+  margin: 2rem;
+}
+
+.beer-me-button {
+  display: block;
+  margin: 0 auto;
+  padding: 1.7rem;
+  border: 3px rgb(170, 170, 236) solid;
+  border-radius: 11px;
+  background: rgb(235, 212, 8);
+  font-size: 24px;
+  font-weight: 700;
+  transition: all 0.5s ease-out;
+}
+
+button:hover {
+  background: rgb(100, 100, 211);
+  border: 3px solid rgb(4, 0, 255);
+  color: white;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+  cursor: pointer;
+}
+
+.beer-card {
+  border: 3px solid lightblue;
+  background: rgb(240, 231, 229);
+  border-radius: 10px;
+  padding: 2rem;
+  margin: 0 auto;
+  overflow: hidden;
+  transition: all 0.5s ease-out;
+}
+
+.beer-card:hover {
+  transform: scale(1.05);
+}
+
+.beers-container {
+  margin-top: 2rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 25px;
+}
+
+.beer-pic {
+  height: 200px;
+  float: left;
+  margin: 0 1em 1em 0;
+}
+
+@media (max-width: 1200px) {
+  .beers-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .beers-container {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}

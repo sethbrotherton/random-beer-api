@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import BeerPage from "./BeerPage";
 import BeerDetails from "./BeerDetails";
+import "./App.css";
 
 class App extends React.Component {
   state = {
@@ -33,27 +34,12 @@ class App extends React.Component {
     });
   };
 
-  // renderContent(i) {
-  //   switch (this.state.activeTab) {
-  //     default:
-  //     case 0:
-  //       return (
-  //         <BeerPage
-  //           beers={this.state.beers}
-  //           onAddToFavorites={() => this.addToFavorites(i)}
-  //         />
-  //       );
-  //     case 1:
-  //       return <FavoriteBeersPage favoriteBeers={this.state.favorites} />;
-  //   }
-  // }
-
   render() {
     return (
       <Router>
         <div className="App">
           <Link to="/">
-            <h1>Random Beer API</h1>
+            <h1 className="page-heading">RANDOM BEERS IN REACT</h1>
           </Link>
           <Switch>
             <Route exact path="/" component={BeerPage} />
