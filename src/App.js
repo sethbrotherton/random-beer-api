@@ -6,32 +6,7 @@ import "./App.css";
 
 class App extends React.Component {
   state = {
-    activeTab: 0,
-    beers: [],
-    favorites: [{ name: "tasty", tagline: "drink me" }]
-  };
-
-  handleTabChange = index => {
-    this.setState({
-      activeTab: index
-    });
-    console.log(this.state.activeTab);
-  };
-
-  addToFavorites = i => {
-    this.setState(state => {
-      const favorited = this.state.beers.map((beer, j) => {
-        if (j === i) {
-          return beer;
-        } else {
-          return null;
-        }
-      });
-      console.log(favorited);
-      return {
-        favorites: [{ ...favorited }, ...this.state.favorites]
-      };
-    });
+    beers: []
   };
 
   render() {

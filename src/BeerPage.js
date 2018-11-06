@@ -7,24 +7,49 @@ class BeerPage extends React.Component {
     beers: []
   };
 
+  componentWillMount = () => {
+    sessionStorage.getItem("beers") &&
+      this.setState({
+        beers: JSON.parse(sessionStorage.getItem("beers"))
+      });
+  };
+
+  // componentDidMount() {
+  //   try {
+  //     fetch(`https://api.punkapi.com/v2/beers/random`)
+  //       .then(response => response.json())
+  //       .then(result =>
+  //         this.setState({
+  //           beers: this.state.beers.concat(result)
+  //         })
+  //       );
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }
+
   componentDidMount() {
-    try {
-      fetch(`https://api.punkapi.com/v2/beers/random`)
-        .then(response => response.json())
-        .then(result =>
-          this.setState({ beers: this.state.beers.concat(result) })
-        );
-    } catch (error) {
-      console.log(error);
+    if (!this.state.beers.length) {
+      this.fetchBeer();
     }
   }
 
   fetchBeer = () => {
-    fetch(`https://api.punkapi.com/v2/beers/random`)
-      .then(response => response.json())
-      .then(result =>
-        this.setState({ beers: result.concat(this.state.beers) })
-      );
+    try {
+      fetch(`https://api.punkapi.com/v2/beers/random`)
+        .then(response => response.json())
+        .then(result =>
+          this.setState({
+            beers: result.concat(this.state.beers)
+          })
+        );
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  componentWillUpdate = (nextProps, nextState) => {
+    sessionStorage.setItem("beers", JSON.stringify(nextState.beers));
   };
 
   render() {
