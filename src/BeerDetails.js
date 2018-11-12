@@ -1,5 +1,6 @@
 import React from "react";
 import "./BeerDetails.css";
+import { uniq } from "lodash";
 
 class BeerDetails extends React.Component {
   state = {
@@ -15,7 +16,6 @@ class BeerDetails extends React.Component {
       this.setState({
         beer: beer
       });
-      console.log(this.state);
     } catch (error) {
       console.log(error);
     }
@@ -25,6 +25,7 @@ class BeerDetails extends React.Component {
     return (
       <div>
         {this.state.beer.map(detail => {
+          let uniqHops = uniq(detail.ingredients.hops);
           return (
             <div key={detail.id} className="beer-details-card">
               <img
@@ -47,7 +48,7 @@ class BeerDetails extends React.Component {
 
               <h3>Hops brewed with:</h3>
               <ul>
-                {detail.ingredients.hops.map(hop => {
+                {uniqHops.map(hop => {
                   return (
                     <div key={hop.name}>
                       <li>{hop.name}</li>

@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import BeerPage from "./BeerPage";
 import BeerDetails from "./BeerDetails";
+import Favorites from "./Favorites";
 import "./App.css";
 
 class App extends React.Component {
@@ -20,6 +21,7 @@ class App extends React.Component {
             <Route exact path="/" component={BeerPage} />
             <Route path="/:id" component={BeerDetails} />
           </Switch>
+          <Route path="/favorites" component={Favorites} />
         </div>
       </Router>
     );
