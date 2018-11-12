@@ -25,7 +25,11 @@ class BeerDetails extends React.Component {
     return (
       <div>
         {this.state.beer.map(detail => {
-          let uniqHops = uniq(detail.ingredients.hops);
+          let hopNames = [];
+          detail.ingredients.hops.map(hop => {
+            return hopNames.push(hop.name);
+          });
+          let uniqHops = uniq(hopNames);
           return (
             <div key={detail.id} className="beer-details-card">
               <img
@@ -50,8 +54,8 @@ class BeerDetails extends React.Component {
               <ul>
                 {uniqHops.map(hop => {
                   return (
-                    <div key={hop.name}>
-                      <li>{hop.name}</li>
+                    <div key={hop}>
+                      <li>{hop}</li>
                     </div>
                   );
                 })}
